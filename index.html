@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meredith Brenner — Product Leader</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0f0f0f;
+      --dark: #1a1a1a;
+      --mid: #2e2e2e;
+      --accent: #7c6af7;
+      --accent-light: #a99ef9;
+      --text: #e8e8e8;
+      --muted: #888;
+      --card-bg: #1e1e1e;
+      --border: #2a2a2a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    nav .logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(124, 106, 247, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(124, 106, 247, 0.3);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover { background: var(--accent-light); border-color: var(--accent-light); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover { border-color: var(--muted); }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 1.05rem;
+      color: #bbb;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    /* EXPERIENCE */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-item:last-child { border-bottom: none; }
+
+    .exp-role {
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-company {
+      color: var(--accent-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .exp-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      grid-column: 1 / -1;
+    }
+
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: block;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-icon {
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    .tag-ai {
+      background: rgba(124, 106, 247, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(124, 106, 247, 0.25);
+    }
+
+    .tag-web {
+      background: rgba(56, 189, 162, 0.15);
+      color: #5dd9bf;
+      border: 1px solid rgba(56, 189, 162, 0.25);
+    }
+
+    .tag-tool {
+      background: rgba(251, 191, 36, 0.1);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.2);
+    }
+
+    .project-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .stack-item {
+      font-size: 0.7rem;
+      background: var(--mid);
+      color: var(--muted);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-decoration: none;
+      transition: border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .contact-card:hover { border-color: var(--accent); }
+
+    .contact-icon { font-size: 1.25rem; }
+
+    .contact-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .contact-value {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--accent-light); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">MB</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Product Leader & Builder</div>
+    <h1>Hi, I'm <span>Meredith Brenner</span></h1>
+    <p>
+      I build products at the intersection of consumer experience and technology —
+      and I'm learning to build them myself. Currently exploring AI tools, side
+      projects, and what it means to be a product leader who ships.
+    </p>
+    <div class="hero-links">
+      <a href="#projects" class="btn btn-primary">View my projects ↓</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <h2>The longer version</h2>
+    <p class="about-text">
+      I'm a product leader with experience building consumer-facing products at scale.
+      My background is in [your background here — e.g., e-commerce, retail tech, marketplaces].
+      I care deeply about user experience, data-informed decisions, and shipping things
+      that actually matter.
+    </p>
+    <p class="about-text">
+      Lately, I've been leaning into AI — not just as a product area to watch, but as
+      a toolkit for building. I use AI tools to code side projects, automate parts of my
+      workflow, and stay close to what's technically possible. This site is one of those projects.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <h2>Where I've worked</h2>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Senior Product Manager</div>
+        <div class="exp-company">URBN</div>
+      </div>
+      <div class="exp-date">2022 — Present</div>
+      <div class="exp-desc">
+        [Add 1–2 sentences about your key focus area and impact. E.g., "Led product strategy for checkout and payments, driving a 12% improvement in conversion rate across Urban Outfitters and Anthropologie."]
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Product Manager</div>
+        <div class="exp-company">Previous Company</div>
+      </div>
+      <div class="exp-date">20XX — 20XX</div>
+      <div class="exp-desc">
+        [Your role description and key achievements here.]
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Earlier Role</div>
+        <div class="exp-company">Company</div>
+      </div>
+      <div class="exp-date">20XX — 20XX</div>
+      <div class="exp-desc">
+        [Your role description here.]
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Side Projects</div>
+    <h2>Things I've built</h2>
+
+    <div class="projects-grid">
+
+      <a class="project-card" href="https://github.com/yourusername/my-first-web-app" target="_blank">
+        <div class="project-header">
+          <div class="project-icon">🌐</div>
+          <span class="project-tag tag-web">Web</span>
+        </div>
+        <div class="project-name">This Portfolio Site</div>
+        <div class="project-desc">
+          Built from scratch using HTML, CSS, and JavaScript — vibe coded with Claude.
+          Deployed on Vercel. My first shipped side project.
+        </div>
+        <div class="project-stack">
+          <span class="stack-item">HTML</span>
+          <span class="stack-item">CSS</span>
+          <span class="stack-item">Vercel</span>
+          <span class="stack-item">GitHub</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="#" target="_blank">
+        <div class="project-header">
+          <div class="project-icon">🤖</div>
+          <span class="project-tag tag-ai">AI</span>
+        </div>
+        <div class="project-name">Project Name</div>
+        <div class="project-desc">
+          [Describe your AI project here. What problem does it solve? What did you learn?]
+        </div>
+        <div class="project-stack">
+          <span class="stack-item">Claude API</span>
+          <span class="stack-item">React</span>
+          <span class="stack-item">Vercel</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="#" target="_blank">
+        <div class="project-header">
+          <div class="project-icon">⚡</div>
+          <span class="project-tag tag-tool">Tool</span>
+        </div>
+        <div class="project-name">Project Name</div>
+        <div class="project-desc">
+          [Add your next project here when you build it. Leave this as a placeholder or remove it.]
+        </div>
+        <div class="project-stack">
+          <span class="stack-item">Python</span>
+          <span class="stack-item">OpenAI</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <h2>Let's connect</h2>
+    <p style="color: var(--muted); margin-bottom: 0.5rem;">
+      Always happy to chat about product, AI, or building things on the side.
+    </p>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:mbrenner@urbn.com">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">mbrenner@urbn.com</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://linkedin.com/in/yourusername" target="_blank">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">Meredith Brenner</div>
+        </div>
+      </a>
+      <a class="contact-card" href="https://github.com/yourusername" target="_blank">
+        <div class="contact-icon">🐙</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">yourusername</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    Built by Meredith Brenner using <a href="https://claude.ai">Claude</a> · Deployed on Vercel
+  </footer>
+
+</body>
+</html>
